@@ -7,9 +7,8 @@ Early adopters
 ----------
 If you're reading this now, you're one of the first to check this site. I've uploaded a version in the RELEASE section of github on this repo. give it a download a try it before I go public. - https://github.com/Whitetigerswt/samp-font-changer/releases/download/v1.0/sampfont.asi  Test some things, iron it out. You can report things to me all day. I'm on the SA-MP IRC all day. http://wiki.sa-mp.com/wiki/IRC. my username is Whitetiger or Whitetiger_PC, you can nick alert me or PM if you want to tell me something
 
-How to use
-----------
 Requirements to run:
+----------
 
 - VC++ 2010 redistributable
 
