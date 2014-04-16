@@ -1,5 +1,9 @@
 #include "main.h"
 #include "CodeCave.h"
+#include "cfg.h"
+#include <iostream>
+
+using namespace std;
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
@@ -18,154 +22,195 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	return TRUE;
 }
 
-char* g_szNewFont = "David";
 DWORD g_dwSampBaseAddr = NULL;
+DWORD g_dwJmpBack[8];
+DWORD dwJmpBack = NULL;
 
-
-// arrays are to annoying to deal with in _asm, I still cringe at this.
-
-DWORD g_dwJmpBack;
-DWORD g_dwJmpBack2;
-DWORD g_dwJmpBack3;
-DWORD g_dwJmpBack4;
-DWORD g_dwJmpBack5;
-DWORD g_dwJmpBack6;
-DWORD g_dwJmpBack7;
-
+unsigned int height = NULL, width = NULL, weight = NULL, miplevels = NULL, italic = NULL, charset = NULL, precision = NULL, quality = NULL, pitch = NULL;
+char* Font = "Arial";
 
 __declspec(naked) void placeDialogButtonFontInfo() { // THIS ALSO CHANGES TEXT FONT WHEN YOU PRESS T BUT DONT SEND A MESSAGE
 
+	_asm pushad
+
+	LoadConfig("DialogAndChat", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
+	dwJmpBack = g_dwJmpBack[0];
+
+	_asm popad
+
 	_asm { 
-		push 02BCh
-		push 14h
-		push [g_szNewFont]
-		push 0h
+		push [weight]
+		push [height]
+		push [Font]
+		push [charset]
 		mov ecx,esi
 
-		jmp g_dwJmpBack
+		jmp dwJmpBack
 	}
 }
 
 __declspec(naked) void placeDialogFontInfo() {
 
+	_asm pushad
+
+	LoadConfig("DialogBody", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
+	dwJmpBack = g_dwJmpBack[1];
+
+	_asm popad
+
 	_asm { 
-		push 02BCh
-		push 12h
-		push [g_szNewFont]
-		push 1h
+		push [weight]
+		push [height]
+		push [Font]
+		push [charset]
 		mov ecx,esi
 
-		jmp g_dwJmpBack2
+		jmp dwJmpBack
 	}
 }
 
 __declspec(naked) void placeChatFontInfo() {
 
+	_asm pushad
+
+	LoadConfig("Chat", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
+	dwJmpBack	= g_dwJmpBack[2];
+
+	_asm popad
+
 	_asm { 
 		push EAX
-		push [g_szNewFont]
-		push 0h
-		push 4h
-		push 0h
-		push 1h
-		push 0h
-		push 1h
-		push 2BCh
-		push 0h
-		push EDI
+		push [Font]
+		push [pitch]
+		push [quality]
+		push [precision]
+		push [charset]
+		push [italic]
+		push [miplevels]
+		push [weight]
+		push [width]
+		push [height]
 		push ECX
 
-		jmp g_dwJmpBack3
+		jmp dwJmpBack
 	}
 }
 
 __declspec(naked) void placeChatFontInfoShadow() {
 
+	_asm pushad
+
+	LoadConfig("ChatShadow", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
+	dwJmpBack = g_dwJmpBack[3];
+
+	_asm popad
+
 	_asm { 
-		push [g_szNewFont]
-		push 0h
-		push 4h
-		push 0h
-		push 1h
-		push 0h
-		push 1h
-		push 2BCh
-		push 0h
-		push EDI
+		push [Font]
+		push [pitch]
+		push [quality]
+		push [precision]
+		push [charset]
+		push [italic]
+		push [miplevels]
+		push [weight]
+		push [width]
+		push [height]
 		push EAX
 
-		jmp g_dwJmpBack4
+		jmp dwJmpBack
 	}
 }
 
 __declspec(naked) void place3DTextFontInfo() {
 
+	_asm pushad
+
+	LoadConfig("3DText", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
+	dwJmpBack = g_dwJmpBack[4];
+
+	_asm popad
+
 	_asm { 
 		push ecx
-		push [g_szNewFont]
-		push 0h
-		push 4h
-		push 0h
-		push 1h
-		push 0h
-		push 1h
-		push 2BCh
-		push 0h
-		push EBX
+		push [Font]
+		push [pitch]
+		push [quality]
+		push [precision]
+		push [charset]
+		push [italic]
+		push [miplevels]
+		push [weight]
+		push [width]
+		push [height]
 		push EDX
 
-		jmp g_dwJmpBack5
+		jmp dwJmpBack
 	}
 }
 
 
 __declspec(naked) void place3DTextShadowFontInfo() {
 
+	_asm pushad
+
+	LoadConfig("3DTextShadow", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
+	dwJmpBack = g_dwJmpBack[5];
+
+	_asm popad
+
+
 	_asm { 
 		push eax
-		push [g_szNewFont]
-		push 0h
-		push 4h
-		push 0h
-		push 1h
-		push 0h
-		push 1h
-		push 2BCh
-		push 0h
-		push ebx
+		push [Font]
+		push [pitch]
+		push [quality]
+		push [precision]
+		push [charset]
+		push [italic]
+		push [miplevels]
+		push [weight]
+		push [width]
+		push [height]
 		push edx
 
-		jmp g_dwJmpBack6
+		jmp dwJmpBack
 	}
 }
 
 
 __declspec(naked) void placeUnknownFontInfo() {
 
+	_asm pushad
+
+	LoadConfig("Unknown", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
+	dwJmpBack = g_dwJmpBack[6];
+
+	_asm popad
+
 	_asm { 
 		push ebp
-		push [g_szNewFont]
-		push 0h
-		push 4h
-		push 0h
-		push 1h
-		push 0h
-		push 1h
-		push 2BCh
-		push 0Ah
-		push 26h
+		push [Font]
+		push [pitch]
+		push [quality]
+		push [precision]
+		push [charset]
+		push [italic]
+		push [miplevels]
+		push [weight]
+		push [width]
+		push [height]
 		push ecx
 
-		jmp g_dwJmpBack7
+		jmp dwJmpBack
 	}
 }
 
 
 
-
 void WINAPI Load() {
-
 	g_dwSampBaseAddr = (DWORD)GetModuleHandle("samp.dll");
+	
 	
 	DWORD installaddr[8];
 	DWORD oldProt = 0;
@@ -203,13 +248,13 @@ void WINAPI Load() {
 void CalculateJumpBackAddresses() {
 	// FORMAT: g_dwJmpBack = base addr + install addr + install address size
 
-	g_dwJmpBack  = g_dwSampBaseAddr + 0x9EA15 + 0x10;
-	g_dwJmpBack2 = g_dwSampBaseAddr + 0x9EA2A + 0x10;
-	g_dwJmpBack3 = g_dwSampBaseAddr + 0x7D35C + 0x1B;
-	g_dwJmpBack4 = g_dwSampBaseAddr + 0x7D3A4 + 0x1A;
-	g_dwJmpBack5 = g_dwSampBaseAddr + 0x7D3CA + 0x1B;
-	g_dwJmpBack6 = g_dwSampBaseAddr + 0x7D412 + 0x1B;
-	g_dwJmpBack7 = g_dwSampBaseAddr + 0x7D451 + 0x1C;
+	g_dwJmpBack[0] = g_dwSampBaseAddr + 0x9EA15 + 0x10;
+	g_dwJmpBack[1] = g_dwSampBaseAddr + 0x9EA2A + 0x10;
+	g_dwJmpBack[2] = g_dwSampBaseAddr + 0x7D35C + 0x1B;
+	g_dwJmpBack[3] = g_dwSampBaseAddr + 0x7D3A4 + 0x1A;
+	g_dwJmpBack[4] = g_dwSampBaseAddr + 0x7D3CA + 0x1B;
+	g_dwJmpBack[5] = g_dwSampBaseAddr + 0x7D412 + 0x1B;
+	g_dwJmpBack[6] = g_dwSampBaseAddr + 0x7D451 + 0x1C;
 
 
 }
