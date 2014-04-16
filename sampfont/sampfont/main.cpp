@@ -42,7 +42,7 @@ __declspec(naked) void placeDialogButtonFontInfo() { // THIS ALSO CHANGES TEXT F
 		push [weight]
 		push [height]
 		push [Font]
-		push [charset]
+		push [width]
 		mov ecx,esi
 
 		jmp dwJmpBack
@@ -62,7 +62,7 @@ __declspec(naked) void placeDialogFontInfo() {
 		push [weight]
 		push [height]
 		push [Font]
-		push [charset]
+		push [width]
 		mov ecx,esi
 
 		jmp dwJmpBack
