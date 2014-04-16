@@ -3,9 +3,6 @@ samp-font
 
 Change the ingame font (and more) of the SA-MP chat, dialogs, and 3D text labels without complicated hex editing!
 
-Compiled release and pictures coming within ~1-2 days!
-
-
 HOW TO USE
 ----------
 so you've made a mod to change the font in the chat, how do you use it? Well, the first time you run your game with this mod loaded it will generate the default .cfg. these are the values that SA-MP uses by default when the game runs. You can tweak these things and just make the chat a little but smaller if you'd like, or you can change the font completely and overhaul the chat. There are seperate settings for dialogs. you can change the way dialogs appear on your screen too.
