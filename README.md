@@ -50,4 +50,4 @@ whoa, thats a bit to high. now you can mess around with the values if you want, 
 
 ![ScreenShot](https://sixtytiger.com/tiger/random/perfect_height_width.png)
 
-And thats how it's done. You can change the fonts of 3D Text labels, Dialogs, in the same way. I haven't messed around with it a lot yet so I'm not an expert on how pitch, precision, miplevels, actually affect the look of it, but I really look forward to the configs the community can output!!
+And thats how it's done. You can change the fonts of 3D Text labels, Dialogs, in the same way. or leave the default font, and just change the height and width! You can use any font installed on your PC. I haven't messed around with it a lot yet so I'm not an expert on how pitch, precision, miplevels, actually affect the look of it, but I really look forward to the configs the community can output!!
