@@ -48,4 +48,6 @@ so change the height to 25, and the width to 25, on both [Chat] and [ChatShadow]
 
 whoa, thats a bit to high. now you can mess around with the values if you want, but I found the best value for my 1920x1080 resolution to be 10 width, 22 height.
 
+![ScreenShot](https://sixtytiger.com/tiger/random/perfect_height_width.png)
+
 And thats how it's done. You can change the fonts of 3D Text labels, Dialogs, in the same way. I haven't messed around with it a lot yet so I'm not an expert on how pitch, precision, miplevels, actually affect the look of it, but I really look forward to the configs the community can output!!
