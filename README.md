@@ -15,7 +15,7 @@ Requirements to run:
 Picking a font
 ----------
 
-Not every font makes a good alternative, some fonts do not support color embedding in dialogs (though, all seem to work when used in the chat). so when picking a font for dialogs and 3D text labels, take this into consideration if you rejoin a server and start seeing a bunch of {FFFFFF} codes. An example of one that doesn't support it is "Bradley Hand ITC", an example of one that does support it is "David"
+Not every font makes a good alternative, some fonts do not support color embedding in dialogs (though, all seem to work when used in the chat). so when picking a font for dialogs and 3D text labels, take this into consideration if you rejoin a server and start seeing a bunch of {FFFFFF} codes. An example of one that doesn't support it is "Bradley Hand ITC", an example of one that does support it is "David". I don't know of a way to tell if a font supports the color embedding other than just testing it.
 
 How to use
 ----------
@@ -37,7 +37,7 @@ here we have a list of installed fonts, in GROUP form! you need to get the indiv
 
 now, in the installed fonts window, this font is called French Script MT Regular. If you had copied that into the config file, it wouldn't have worked. The real name of this font is French Script MT (As you can see by the window title on it).
 
-so copy this font name into the Font key under [Chat] and [ChatShadow]. a quick side note, for the best appeal, Chat and ChatShadow should have IDENTICAL settings, you should really never make them different unless you know what you're doing. the same applies to 3DText and 3DTextShadow.
+so copy this font name into the Font key under [Chat] and [ChatShadow]. a quick side note, for the best appeal, Chat and ChatShadow should have IDENTICAL settings, you should really never make them different unless you know what you're doing. the same applies to 3DTextAndDialogBody and 3DTextAndDialogBodyShadow.
 
 Now launch the game.
 
@@ -51,7 +51,7 @@ so change the height to 25, and the width to 25, on both [Chat] and [ChatShadow]
 
 ![ScreenShot](https://sixtytiger.com/tiger/random/high_height_width.png)
 
-whoa, thats a bit to high. now you can mess around with the values if you want, but I found the best value for my 1920x1080 resolution to be 10 width, 22 height.
+whoa, thats a bit to high. now you can mess around with the values if you want, but I found the best value for my 1920x1080 resolution on this font to be 10 width, 22 height.
 
 ![ScreenShot](https://sixtytiger.com/tiger/random/perfect_height_width.png)
 
