@@ -2,4 +2,3 @@ void LoadConfig(char* element, char* &font, unsigned int &pitch, unsigned int &q
 void CreateConfig();
 void WriteResolutionDefaultValues();
 bool fexists(const char *filename);
-

@@ -1,7 +1,7 @@
 #include "main.h"
 #include "CodeCave.h"
 #include "cfg.h"
-#include <iostream>
+#include "md5.h"
 
 using namespace std;
 
@@ -53,7 +53,7 @@ __declspec(naked) void placeDialogFontInfo() {
 
 	_asm pushad
 
-	LoadConfig("DialogBody", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
+	LoadConfig("DialogListItems", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
 	dwJmpBack = g_dwJmpBack[1];
 
 	_asm popad
@@ -126,7 +126,7 @@ __declspec(naked) void place3DTextFontInfo() {
 
 	_asm pushad
 
-	LoadConfig("3DText", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
+	LoadConfig("3DTextAndDialogBody", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
 	dwJmpBack = g_dwJmpBack[4];
 
 	_asm popad
@@ -154,7 +154,7 @@ __declspec(naked) void place3DTextShadowFontInfo() {
 
 	_asm pushad
 
-	LoadConfig("3DTextShadow", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
+	LoadConfig("3DTextAndDialogBodyShadow", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
 	dwJmpBack = g_dwJmpBack[5];
 
 	_asm popad
@@ -211,38 +211,42 @@ __declspec(naked) void placeUnknownFontInfo() {
 void WINAPI Load() {
 	g_dwSampBaseAddr = (DWORD)GetModuleHandle("samp.dll");
 	
-	
 	DWORD installaddr[8];
 	DWORD oldProt = 0;
 
-	CalculateJumpBackAddresses();
+	char fullPath[256];
+	GetModuleFileName(GetModuleHandle("samp.dll"), fullPath, sizeof(fullPath));
 
-	installaddr[0] = g_dwSampBaseAddr + 0x9EA15; // Chat input + Dialog buttons
-	installaddr[1] = g_dwSampBaseAddr + 0x9EA2A; // Dialog list items and captions, NOT MAIN BODY!!
-	installaddr[2] = g_dwSampBaseAddr + 0x7D35C; // Chat main font
-	installaddr[3] = g_dwSampBaseAddr + 0x7D3A4; // Chat shadow font
-	installaddr[4] = g_dwSampBaseAddr + 0x7D3CA; // Dialog body and 3D text label font
-	installaddr[5] = g_dwSampBaseAddr + 0x7D412; // 3D Text label shadow font
-	installaddr[6] = g_dwSampBaseAddr + 0x7D451; // ???
+	MD5 md5_ = MD5();
+	char * md5 = md5_.digestFile(fullPath);
+	if(!strcmp("64add3449fa874e17071c5149892ce07", md5) && strlen(md5) > 0) {
 
-	VirtualProtect((LPVOID)installaddr[0], 16, PAGE_EXECUTE_READWRITE, &oldProt);
-	VirtualProtect((LPVOID)installaddr[1], 16, PAGE_EXECUTE_READWRITE, &oldProt);
-	VirtualProtect((LPVOID)installaddr[2], 27, PAGE_EXECUTE_READWRITE, &oldProt);
-	VirtualProtect((LPVOID)installaddr[3], 26, PAGE_EXECUTE_READWRITE, &oldProt);
-	VirtualProtect((LPVOID)installaddr[4], 27, PAGE_EXECUTE_READWRITE, &oldProt);
-	VirtualProtect((LPVOID)installaddr[5], 27, PAGE_EXECUTE_READWRITE, &oldProt);
-	VirtualProtect((LPVOID)installaddr[6], 28, PAGE_EXECUTE_READWRITE, &oldProt);
+		CalculateJumpBackAddresses();
 
-	HookInstall(installaddr[0], (DWORD)placeDialogButtonFontInfo, 16);
-	HookInstall(installaddr[1], (DWORD)placeDialogFontInfo, 16);
-	HookInstall(installaddr[2], (DWORD)placeChatFontInfo, 27);
-	HookInstall(installaddr[3], (DWORD)placeChatFontInfoShadow, 26);
-	HookInstall(installaddr[4], (DWORD)place3DTextFontInfo, 27);
-	HookInstall(installaddr[5], (DWORD)place3DTextShadowFontInfo, 27);
-	HookInstall(installaddr[6], (DWORD)placeUnknownFontInfo, 28);
+		installaddr[0] = g_dwSampBaseAddr + 0x9EA15; // Chat input + Dialog buttons
+		installaddr[1] = g_dwSampBaseAddr + 0x9EA2A; // Dialog list items and captions, NOT MAIN BODY!!
+		installaddr[2] = g_dwSampBaseAddr + 0x7D35C; // Chat main font
+		installaddr[3] = g_dwSampBaseAddr + 0x7D3A4; // Chat shadow font
+		installaddr[4] = g_dwSampBaseAddr + 0x7D3CA; // Dialog body and 3D text label font
+		installaddr[5] = g_dwSampBaseAddr + 0x7D412; // 3D Text label shadow font
+		installaddr[6] = g_dwSampBaseAddr + 0x7D451; // ???
 
+		VirtualProtect((LPVOID)installaddr[0], 16, PAGE_EXECUTE_READWRITE, &oldProt);
+		VirtualProtect((LPVOID)installaddr[1], 16, PAGE_EXECUTE_READWRITE, &oldProt);
+		VirtualProtect((LPVOID)installaddr[2], 27, PAGE_EXECUTE_READWRITE, &oldProt);
+		VirtualProtect((LPVOID)installaddr[3], 26, PAGE_EXECUTE_READWRITE, &oldProt);
+		VirtualProtect((LPVOID)installaddr[4], 27, PAGE_EXECUTE_READWRITE, &oldProt);
+		VirtualProtect((LPVOID)installaddr[5], 27, PAGE_EXECUTE_READWRITE, &oldProt);
+		VirtualProtect((LPVOID)installaddr[6], 28, PAGE_EXECUTE_READWRITE, &oldProt);
 
-
+		HookInstall(installaddr[0], (DWORD)placeDialogButtonFontInfo, 16);
+		HookInstall(installaddr[1], (DWORD)placeDialogFontInfo, 16);
+		HookInstall(installaddr[2], (DWORD)placeChatFontInfo, 27);
+		HookInstall(installaddr[3], (DWORD)placeChatFontInfoShadow, 26);
+		HookInstall(installaddr[4], (DWORD)place3DTextFontInfo, 27);
+		HookInstall(installaddr[5], (DWORD)place3DTextShadowFontInfo, 27);
+		HookInstall(installaddr[6], (DWORD)placeUnknownFontInfo, 28);
+	}
 }
 
 void CalculateJumpBackAddresses() {

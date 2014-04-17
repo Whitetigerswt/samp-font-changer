@@ -12,6 +12,11 @@ Requirements to run:
 
 - VC++ 2010 redistributable
 
+Picking a font
+----------
+
+Not every font makes a good alternative, some fonts do not support color embedding in dialogs (though, all seem to work when used in the chat). so when picking a font for dialogs and 3D text labels, take this into consideration if you rejoin a server and start seeing a bunch of {FFFFFF} codes. An example of one that doesn't support it is "Bradley Hand ITC", an example of one that does support it is "David"
+
 How to use
 ----------
 so you've made a mod to change the font in the chat, how do you use it? Well, the first time you run your game with this mod loaded it will generate the default .cfg. these are the values that SA-MP uses by default when the game runs. You can tweak these things and just make the chat a little but smaller if you'd like, or you can change the font completely and overhaul the chat. There are seperate settings for dialogs. you can change the way dialogs appear on your screen too.
@@ -51,3 +56,15 @@ whoa, thats a bit to high. now you can mess around with the values if you want, 
 ![ScreenShot](https://sixtytiger.com/tiger/random/perfect_height_width.png)
 
 And thats how it's done. You can change the fonts of 3D Text labels, Dialogs, in the same way. or leave the default font, and just change the height and width! You can use any font installed on your PC. I haven't messed around with it a lot yet so I'm not an expert on how pitch, precision, miplevels, actually affect the look of it, but I really look forward to the configs the community can output!!
+
+Samples
+----------
+![ScreenShot](https://www.sixtytiger.com/tiger/random/dialog_font.png)
+
+This is a font called "Brush Script MT Italic". when picking a dialog font and size, it's important to note that it may break the pretty indentions servers have finely tuned to the Arial font.
+
+![ScreenShot](https://www.sixtytiger.com/tiger/random/shrink_chat_size.png)
+
+This is the default settings, same Arial font, but the chat size is shrunken a little bit, moving it out of the way of the game, and in my opinion making it easier to read.
+
+

@@ -68,26 +68,26 @@ void CreateConfig() {
 	WritePrivateProfileString("ChatShadow", "Width", "0", fullPath); 
 	//WritePrivateProfileString("ChatShadow", "Height", "14", fullPath);
 
-	WritePrivateProfileString("3DText", "Font", "Arial", fullPath); 
-	WritePrivateProfileString("3DText", "Pitch", "0", fullPath); 
-	WritePrivateProfileString("3DText", "Quality", "4", fullPath); 
-	WritePrivateProfileString("3DText", "Precision", "0", fullPath); 
-	WritePrivateProfileString("3DText", "Charset", "1", fullPath); 
-	WritePrivateProfileString("3DText", "Italic", "0", fullPath); 
-	WritePrivateProfileString("3DText", "MipLevels", "1", fullPath); 
-	WritePrivateProfileString("3DText", "Weight", "700", fullPath); 
-	WritePrivateProfileString("3DText", "Width", "0", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBody", "Font", "Arial", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBody", "Pitch", "0", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBody", "Quality", "4", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBody", "Precision", "0", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBody", "Charset", "1", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBody", "Italic", "0", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBody", "MipLevels", "1", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBody", "Weight", "700", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBody", "Width", "0", fullPath); 
 	//WritePrivateProfileString("3DText", "Height", "14", fullPath);
 
-	WritePrivateProfileString("3DTextShadow", "Font", "Arial", fullPath); 
-	WritePrivateProfileString("3DTextShadow", "Pitch", "0", fullPath); 
-	WritePrivateProfileString("3DTextShadow", "Quality", "4", fullPath); 
-	WritePrivateProfileString("3DTextShadow", "Precision", "0", fullPath); 
-	WritePrivateProfileString("3DTextShadow", "Charset", "1", fullPath); 
-	WritePrivateProfileString("3DTextShadow", "Italic", "0", fullPath); 
-	WritePrivateProfileString("3DTextShadow", "MipLevels", "1", fullPath); 
-	WritePrivateProfileString("3DTextShadow", "Weight", "700", fullPath); 
-	WritePrivateProfileString("3DTextShadow", "Width", "0", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBodyShadow", "Font", "Arial", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBodyShadow", "Pitch", "0", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBodyShadow", "Quality", "4", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBodyShadow", "Precision", "0", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBodyShadow", "Charset", "1", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBodyShadow", "Italic", "0", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBodyShadow", "MipLevels", "1", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBodyShadow", "Weight", "700", fullPath); 
+	WritePrivateProfileString("3DTextAndDialogBodyShadow", "Width", "0", fullPath); 
 	//WritePrivateProfileString("3DTextShadow", "Height", "12", fullPath);
 
 	WritePrivateProfileString("DialogAndChat", "Font", "Arial", fullPath); 
@@ -95,10 +95,10 @@ void CreateConfig() {
 	WritePrivateProfileString("DialogAndChat", "Height", "20", fullPath); 
 	WritePrivateProfileString("DialogAndChat", "Width", "0", fullPath);
 
-	WritePrivateProfileString("DialogBody", "Font", "Arial", fullPath); 
-	WritePrivateProfileString("DialogBody", "Weight", "700", fullPath); 
-	WritePrivateProfileString("DialogBody", "Height", "18", fullPath); 
-	WritePrivateProfileString("DialogBody", "Width", "1", fullPath);
+	WritePrivateProfileString("DialogListItems", "Font", "Arial", fullPath); 
+	WritePrivateProfileString("DialogListItems", "Weight", "700", fullPath); 
+	WritePrivateProfileString("DialogListItems", "Height", "18", fullPath); 
+	WritePrivateProfileString("DialogListItems", "Width", "1", fullPath);
 
 	WritePrivateProfileString("Unknown", "Font", "Arial", fullPath); 
 	WritePrivateProfileString("Unknown", "Pitch", "0", fullPath); 
@@ -151,8 +151,8 @@ void WriteResolutionDefaultValues() {
 
 	WritePrivateProfileString("Chat", "Height", edi_str, fullPath);
 	WritePrivateProfileString("ChatShadow", "Height", edi_str, fullPath);
-	WritePrivateProfileString("3DText", "Height", ebx_str, fullPath);
-	WritePrivateProfileString("3DTextShadow", "Height", ebx_str, fullPath);
+	WritePrivateProfileString("3DTextAndDialogBody", "Height", ebx_str, fullPath);
+	WritePrivateProfileString("3DTextAndDialogBodyShadow", "Height", ebx_str, fullPath);
 }
 
 bool fexists(const char* filename) {
