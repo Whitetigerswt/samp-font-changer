@@ -27,7 +27,7 @@ void LoadConfig(char* element, char* &font, unsigned int &pitch, unsigned int &q
 	width		= GetPrivateProfileInt(element, "Width", 10, fullPath);
 	height		= GetPrivateProfileInt(element, "Height", 14, fullPath);
 
-	GetPrivateProfileString(element, "Font", "Arial", currentDirectory, 128, fullPath); // NOTE TO FUTURE SELF: THIS LINE CAUSES A CRASH!!!
+	GetPrivateProfileString(element, "Font", "Arial", currentDirectory, 128, fullPath);
 
 	font = currentDirectory;
 
@@ -93,12 +93,23 @@ void CreateConfig() {
 	WritePrivateProfileString("DialogAndChat", "Font", "Arial", fullPath); 
 	WritePrivateProfileString("DialogAndChat", "Weight", "700", fullPath); 
 	WritePrivateProfileString("DialogAndChat", "Height", "20", fullPath); 
-	WritePrivateProfileString("DialogAndChat", "Width", "0", fullPath);
+	WritePrivateProfileString("DialogAndChat", "Charset", "0", fullPath);
 
 	WritePrivateProfileString("DialogListItems", "Font", "Arial", fullPath); 
 	WritePrivateProfileString("DialogListItems", "Weight", "700", fullPath); 
 	WritePrivateProfileString("DialogListItems", "Height", "18", fullPath); 
-	WritePrivateProfileString("DialogListItems", "Width", "1", fullPath);
+	WritePrivateProfileString("DialogListItems", "Charset", "1", fullPath);
+
+	WritePrivateProfileString("KillList", "Font", "Arial", fullPath); 
+	WritePrivateProfileString("KillList", "Pitch", "0", fullPath); 
+	WritePrivateProfileString("KillList", "Quality", "4", fullPath); 
+	WritePrivateProfileString("KillList", "Precision", "0", fullPath); 
+	WritePrivateProfileString("KillList", "Charset", "1", fullPath); 
+	WritePrivateProfileString("KillList", "Italic", "0", fullPath); 
+	WritePrivateProfileString("KillList", "MipLevels", "1", fullPath); 
+	WritePrivateProfileString("KillList", "Weight", "700", fullPath); 
+	WritePrivateProfileString("KillList", "Width", "0", fullPath); 
+
 
 	WritePrivateProfileString("Unknown", "Font", "Arial", fullPath); 
 	WritePrivateProfileString("Unknown", "Pitch", "0", fullPath); 

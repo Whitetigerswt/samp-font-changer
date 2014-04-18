@@ -1,9 +1,6 @@
 #include "main.h"
 #include "CodeCave.h"
 #include "cfg.h"
-#include "md5.h"
-
-using namespace std;
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
@@ -17,7 +14,8 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 			ExitProcess(GetLastError());
 			return FALSE; 
 		}
-		break;
+
+		return TRUE;
 	}
 	return TRUE;
 }
@@ -42,7 +40,7 @@ __declspec(naked) void placeDialogButtonFontInfo() { // THIS ALSO CHANGES TEXT F
 		push [weight]
 		push [height]
 		push [Font]
-		push [width]
+		push [charset]
 		mov ecx,esi
 
 		jmp dwJmpBack
@@ -62,7 +60,7 @@ __declspec(naked) void placeDialogFontInfo() {
 		push [weight]
 		push [height]
 		push [Font]
-		push [width]
+		push [charset]
 		mov ecx,esi
 
 		jmp dwJmpBack
@@ -178,6 +176,37 @@ __declspec(naked) void place3DTextShadowFontInfo() {
 	}
 }
 
+__declspec(naked) void placeKillListFontInfo() {
+
+	_asm pushad
+
+	LoadConfig("KillList", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
+	dwJmpBack = g_dwJmpBack[7];
+
+	_asm popad
+
+	_asm { 
+		push [Font]
+		push [pitch]
+		push [quality]
+		push [precision]
+		xor eax,eax
+		push [charset]
+		cmp edx,400h
+		push [italic]
+		setg al
+		push [miplevels]
+		push [weight]
+		push [width]
+		lea eax,[eax+eax+0Ch]
+		push [height]
+		push ecx
+
+		jmp dwJmpBack
+	}
+}
+
+
 
 __declspec(naked) void placeUnknownFontInfo() {
 
@@ -209,18 +238,17 @@ __declspec(naked) void placeUnknownFontInfo() {
 
 
 void WINAPI Load() {
+
+	
+
 	g_dwSampBaseAddr = (DWORD)GetModuleHandle("samp.dll");
 	
 	DWORD installaddr[8];
 	DWORD oldProt = 0;
 
-	char fullPath[256];
-	GetModuleFileName(GetModuleHandle("samp.dll"), fullPath, sizeof(fullPath));
+	int arial = *(int*)(g_dwSampBaseAddr + 0xD4034);
 
-	MD5 md5_ = MD5();
-	char * md5 = md5_.digestFile(fullPath);
-	if(!strcmp("64add3449fa874e17071c5149892ce07", md5) && strlen(md5) > 0) {
-
+	if(arial == 1634300481) { // is 0.3z R1?
 		CalculateJumpBackAddresses();
 
 		installaddr[0] = g_dwSampBaseAddr + 0x9EA15; // Chat input + Dialog buttons
@@ -230,6 +258,7 @@ void WINAPI Load() {
 		installaddr[4] = g_dwSampBaseAddr + 0x7D3CA; // Dialog body and 3D text label font
 		installaddr[5] = g_dwSampBaseAddr + 0x7D412; // 3D Text label shadow font
 		installaddr[6] = g_dwSampBaseAddr + 0x7D451; // ???
+		installaddr[7] = g_dwSampBaseAddr + 0x7C0C9; // kill list
 
 		VirtualProtect((LPVOID)installaddr[0], 16, PAGE_EXECUTE_READWRITE, &oldProt);
 		VirtualProtect((LPVOID)installaddr[1], 16, PAGE_EXECUTE_READWRITE, &oldProt);
@@ -238,6 +267,7 @@ void WINAPI Load() {
 		VirtualProtect((LPVOID)installaddr[4], 27, PAGE_EXECUTE_READWRITE, &oldProt);
 		VirtualProtect((LPVOID)installaddr[5], 27, PAGE_EXECUTE_READWRITE, &oldProt);
 		VirtualProtect((LPVOID)installaddr[6], 28, PAGE_EXECUTE_READWRITE, &oldProt);
+		VirtualProtect((LPVOID)installaddr[7], 41, PAGE_EXECUTE_READWRITE, &oldProt);
 
 		HookInstall(installaddr[0], (DWORD)placeDialogButtonFontInfo, 16);
 		HookInstall(installaddr[1], (DWORD)placeDialogFontInfo, 16);
@@ -246,7 +276,9 @@ void WINAPI Load() {
 		HookInstall(installaddr[4], (DWORD)place3DTextFontInfo, 27);
 		HookInstall(installaddr[5], (DWORD)place3DTextShadowFontInfo, 27);
 		HookInstall(installaddr[6], (DWORD)placeUnknownFontInfo, 28);
+		HookInstall(installaddr[7], (DWORD)placeKillListFontInfo, 41);
 	}
+	return;
 }
 
 void CalculateJumpBackAddresses() {
@@ -259,6 +291,7 @@ void CalculateJumpBackAddresses() {
 	g_dwJmpBack[4] = g_dwSampBaseAddr + 0x7D3CA + 0x1B;
 	g_dwJmpBack[5] = g_dwSampBaseAddr + 0x7D412 + 0x1B;
 	g_dwJmpBack[6] = g_dwSampBaseAddr + 0x7D451 + 0x1C;
+	g_dwJmpBack[7] = g_dwSampBaseAddr + 0x7C0C9 + 0x29;
 
 
 }
