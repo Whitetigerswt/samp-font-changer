@@ -3,10 +3,6 @@ samp-font
 
 Change the ingame font (and more) of the SA-MP chat, dialogs, and 3D text labels without complicated hex editing!
 
-Early adopters
-----------
-If you're reading this now, you're one of the first to check this site. I've uploaded a version in the RELEASE section of github on this repo. give it a download a try it before I go public. Test some things, iron it out. You can report things to me all day. I'm on the SA-MP IRC all day. http://wiki.sa-mp.com/wiki/IRC. my username is Whitetiger or Whitetiger_PC, you can nick alert me or PM if you want to tell me something
-
 Requirements to run:
 ----------
 
@@ -15,7 +11,7 @@ Requirements to run:
 Picking a font
 ----------
 
-Not every font makes a good alternative, some fonts do not support color embedding in dialogs (though, all seem to work when used in the chat). so when picking a font for dialogs and 3D text labels, take this into consideration if you rejoin a server and start seeing a bunch of {FFFFFF} codes. An example of one that doesn't support it is "Bradley Hand ITC", an example of one that does support it is "David". I don't know of a way to tell if a font supports the color embedding other than just testing it.
+Not every font makes a good alternative, some fonts do not support color embedding in dialogs (though, all seem to work when used in the chat). so when picking a font for dialogs and 3D text labels, take this into consideration if you rejoin a server and start seeing a bunch of {FFFFFF} codes. I don't know of a way to tell if a font supports the color embedding other than just testing it.
 
 How to use
 ----------
