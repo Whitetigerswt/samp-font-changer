@@ -164,6 +164,7 @@ void WriteResolutionDefaultValues() {
 	WritePrivateProfileString("ChatShadow", "Height", edi_str, fullPath);
 	WritePrivateProfileString("3DTextAndDialogBody", "Height", ebx_str, fullPath);
 	WritePrivateProfileString("3DTextAndDialogBodyShadow", "Height", ebx_str, fullPath);
+	WritePrivateProfileString("KillList", "Height", ebx_str, fullPath); 
 }
 
 bool fexists(const char* filename) {
