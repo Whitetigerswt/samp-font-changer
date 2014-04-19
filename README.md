@@ -67,4 +67,14 @@ This is a font called "Brush Script MT Italic". when picking a dialog font and s
 
 This is the default settings, same Arial font, but the chat size is shrunken a little bit, moving it out of the way of the game, and in my opinion making it easier to read.
 
+![ScreenShot](https://www.sixtytiger.com/tiger/random/nametag.png)
+
+Here we see the name tag modified to another font, looks pretty nice.
+
+![ScreenShot](https://www.sixtytiger.com/tiger/random/killist.png)
+
+Here is the kill list in another font, this one might be my favorite!
+
+
+
 
