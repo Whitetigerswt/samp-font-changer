@@ -6,7 +6,7 @@ Change the ingame font (and more) of the SA-MP chat, dialogs, and 3D text labels
 Requirements to run:
 ----------
 
-- VC++ 2010 redistributable
+- [ASI Loader](http://www.gtagarage.com/mods/show.php?id=8321)
 
 Picking a font
 ----------
