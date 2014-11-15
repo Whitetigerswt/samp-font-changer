@@ -209,11 +209,11 @@ __declspec(naked) void placeKillListFontInfo() {
 
 
 
-__declspec(naked) void placeUnknownFontInfo() {
+__declspec(naked) void placeLicensePlateFontInfo() {
 
 	_asm pushad
 
-	LoadConfig("Unknown", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
+	LoadConfig("LicensePlate", Font, pitch, quality, precision, charset, italic, miplevels, weight, width, height);
 	dwJmpBack = g_dwJmpBack[6];
 
 	_asm popad
@@ -269,7 +269,7 @@ void WINAPI Load() {
 	HookInstall(installaddr[3], (DWORD)placeChatFontInfoShadow, 26);
 	HookInstall(installaddr[4], (DWORD)place3DTextFontInfo, 27);
 	HookInstall(installaddr[5], (DWORD)place3DTextShadowFontInfo, 27);
-	HookInstall(installaddr[6], (DWORD)placeUnknownFontInfo, 28);
+	HookInstall(installaddr[6], (DWORD)placeLicensePlateFontInfo, 28);
 	HookInstall(installaddr[7], (DWORD)placeKillListFontInfo, 41);
 
 	return;

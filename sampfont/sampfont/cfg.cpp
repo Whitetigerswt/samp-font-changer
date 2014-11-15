@@ -111,16 +111,16 @@ void CreateConfig() {
 	WritePrivateProfileString("KillList", "Width", "0", fullPath); 
 
 
-	WritePrivateProfileString("Unknown", "Font", "Arial", fullPath); 
-	WritePrivateProfileString("Unknown", "Pitch", "0", fullPath); 
-	WritePrivateProfileString("Unknown", "Quality", "4", fullPath); 
-	WritePrivateProfileString("Unknown", "Precision", "0", fullPath); 
-	WritePrivateProfileString("Unknown", "Charset", "1", fullPath); 
-	WritePrivateProfileString("Unknown", "Italic", "0", fullPath); 
-	WritePrivateProfileString("Unknown", "MipLevels", "26", fullPath); 
-	WritePrivateProfileString("Unknown", "Weight", "700", fullPath); 
-	WritePrivateProfileString("Unknown", "Width", "38", fullPath); 
-	WritePrivateProfileString("Unknown", "Height", "12", fullPath);
+	WritePrivateProfileString("LicensePlate", "Font", "Arial", fullPath); 
+	WritePrivateProfileString("LicensePlate", "Pitch", "0", fullPath); 
+	WritePrivateProfileString("LicensePlate", "Quality", "4", fullPath); 
+	WritePrivateProfileString("LicensePlate", "Precision", "0", fullPath); 
+	WritePrivateProfileString("LicensePlate", "Charset", "1", fullPath); 
+	WritePrivateProfileString("LicensePlate", "Italic", "0", fullPath); 
+	WritePrivateProfileString("LicensePlate", "MipLevels", "1", fullPath); 
+	WritePrivateProfileString("LicensePlate", "Weight", "700", fullPath); 
+	WritePrivateProfileString("LicensePlate", "Width", "10", fullPath); 
+	WritePrivateProfileString("LicensePlate", "Height", "38", fullPath);
 
 	WriteResolutionDefaultValues();
 }

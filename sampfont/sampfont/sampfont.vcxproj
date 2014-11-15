@@ -84,9 +84,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="CFG.h" />
     <ClInclude Include="CodeCave.h" />
     <ClInclude Include="main.h" />
